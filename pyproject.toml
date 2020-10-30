@@ -12,7 +12,7 @@ homepage = "https://github.com/hpprc/deadbeats"
 deadbeats = "deadbeats:main"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.6"
 requests = "^2.24.0"
 datetime = "^4.3"
 
