@@ -3,9 +3,6 @@ from datetime import datetime
 import os, sys
 
 
-__version__ = '0.1.0'
-
-
 class _InnerClass:
     def __init__(self):
         self.access_token = os.getenv("SLACK_ACCESS_TOKEN")
@@ -30,11 +27,10 @@ class _InnerClass:
         self.thread_ts = ""
 
 
-    def start_thread(self, text="", data={}, **kwargs):
+    def start_thread(self, text="start :tada:", data={}, **kwargs):
         time = str(datetime.now().isoformat(timespec='seconds'))
         info = "\n".join(f'{k}:\t{v}' for k, v in {**data, **kwargs}.items())
-        default_message = f"start :tada:"
-        text = (text or default_message) + f"\nstart time:{time}\n{info}"
+        text = text + f"\nstart time:\t{time}\n{info}"
 
         response = requests.post("https://slack.com/api/chat.postMessage",
             headers = self.headers,
@@ -61,7 +57,7 @@ class _InnerClass:
         )
 
 
-    def ping(self, text="ping :heart:", params={}, **kwargs):
+    def ping(self, text="ping!", params={}, **kwargs):
         return self._post(text = text, info = {**params, **kwargs})
 
 
@@ -81,7 +77,8 @@ DEADBEATS = _InnerClass()
 
 
 def main():
-    print("test!")
+    print("DEADBEATS")
+    print("☠️ see https://youtu.be/6ydgEipkUEU")
 
 
 if __name__ == "__main__":
