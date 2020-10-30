@@ -6,7 +6,7 @@ import os, sys
 __version__ = '0.1.0'
 
 
-class _DEADBEATS:
+class _InnerClass:
     def __init__(self):
         self.access_token = os.getenv("SLACK_ACCESS_TOKEN")
         self.channel_id = os.getenv("SLACK_CHANNEL_ID")
@@ -26,6 +26,10 @@ class _DEADBEATS:
         self.channel_id = channel_id
 
 
+    def reset_thread(self):
+        self.thread_ts = ""
+
+
     def start_thread(self, text="", data={}, **kwargs):
         time = str(datetime.now().isoformat(timespec='seconds'))
         info = "\n".join(f'{k}:\t{v}' for k, v in {**data, **kwargs}.items())
@@ -40,6 +44,7 @@ class _DEADBEATS:
             }
         )
         self.thread_ts = response.json()["ts"]
+        return response
 
 
     def _post(self, text, info = {}):
@@ -50,31 +55,29 @@ class _DEADBEATS:
             headers = self.headers,
             json = {
                 "channel": self.channel_id,
-                "text": f"{text}\ntime:{time}\n{info}",
+                "text": f"{text}\ntime:\t{time}\n{info}",
                 "thread_ts": self.thread_ts,
             }
         )
 
 
-    def ping(self, text="", params={}, **kwargs):
-        default_message = f"ping :heart:"
-        text = text or default_message
+    def ping(self, text="ping :heart:", params={}, **kwargs):
         return self._post(text = text, info = {**params, **kwargs})
 
 
-    def wrap(self, function):
+    def wrap(self, function, start_message="start! :sparkles:", end_message="end! :confetti_ball:"):
         def inner(*args, **kargs):
-            self.start("start! :flexed_biceps:")
+            self._post(start_message)
             try:
                 return function(*args, **kargs)
             except Exception as e:
-                self.error(e)
-                sys.exit()
-            self._post("end! :confetti_ball:")
+                self._post(e)
+                raise e
+            self._post(end_messageend_message)
         return inner
 
 
-DEADBEATS = _DEADBEATS()
+DEADBEATS = _InnerClass()
 
 
 def main():
