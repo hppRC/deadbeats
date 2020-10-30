@@ -39,10 +39,10 @@ def main():
     DEADBEATS.reset_thread()
 ```
 
-
 ## Research Usage with PyTorch Lightning
 
-```
+```python
+from deadbeats import DEADBEATS
 
 class MyModel(pl.LightningModule):
 
@@ -68,6 +68,11 @@ class MyModel(pl.LightningModule):
         trainer.fit(self)
 
 ```
+
+
+## messages like below
+
+![example](.github/images/example_message.png)
 
 
 
