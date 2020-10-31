@@ -39,7 +39,7 @@ def main():
     DEADBEATS.reset_thread()
 ```
 
-## Research Usage with PyTorch Lightning
+## With PyTorch Lightning
 
 ```python
 from deadbeats import DEADBEATS
