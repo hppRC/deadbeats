@@ -6,7 +6,7 @@ An easy to use Slack messaging library for research.
 
 ```python
 from deadbeats import DEADBEATS
-# use environment variables implicitly
+# set environment variables as below
 # SLACK_ACCESS_TOKEN=xxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx (Get your own Slack API access token)
 # SLACK_CHANNEL_ID=deadbeats (set slack channel id whatever you like!)
 
