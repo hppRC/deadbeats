@@ -76,5 +76,5 @@ class MyModel(pl.LightningModule):
 
 
 
-The library is named after the wonderful work of [Mori Calliope](https://www.youtube.com/channel/UCL_qhgtOy0dy1Agp8vkySQg), [DEAD BEATS](https://youtu.be/6ydgEipkUEU).
+This library is named after the wonderful work of [Mori Calliope](https://www.youtube.com/channel/UCL_qhgtOy0dy1Agp8vkySQg), [DEAD BEATS](https://youtu.be/6ydgEipkUEU), and inspired by [hugginface/knockknock](https://github.com/huggingface/knockknock).
 
