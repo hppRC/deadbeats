@@ -2,6 +2,7 @@ from deadbeats import DEADBEATS
 import unittest
 import pytest
 import time
+import requests
 
 # load environment variables by pytest-dotenv
 class TestCore(unittest.TestCase):
@@ -48,6 +49,10 @@ class TestCore(unittest.TestCase):
 
         with pytest.raises(Exception):
             test_inner()
+
+
+    def test_post_error(self):
+        assert DEADBEATS._post('test', info={}, url="invalid url") is None
 
 if __name__ == '__main__':
     unittest.main()
