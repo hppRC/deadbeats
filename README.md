@@ -24,14 +24,14 @@ def main():
     DEADBEATS.ping()
 
 
-    # You can add extra information like below.
-    params = {"loss": 0.5, "val_loss": 1.6, "acc": 100.0}
-    DEADBEATS.ping(text="message whatever you like", params=params, additional="info", huga="huga")
-
-
     # Start threading!
     # All subsequent messages will be sent to the thread.
     DEADBEATS.start_thread()
+
+
+    # You can add extra information like below.
+    params = {"loss": 0.5, "val_loss": 1.6, "acc": 100.0}
+    DEADBEATS.ping(text="message whatever you like", params=params, additional="info", huga="huga")
 
 
     # If you want to stop threading, you can use this method.

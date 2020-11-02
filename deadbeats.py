@@ -27,34 +27,28 @@ class _InnerClass:
         self.thread_ts = ""
 
 
-    def start_thread(self, text="start :tada:", data={}, **kwargs):
-        time = str(datetime.now().isoformat(timespec='seconds'))
-        info = "\n".join(f'{k}:\t{v}' for k, v in {**data, **kwargs}.items())
-        text = text + f"\nstart time:\t{time}\n{info}"
-
-        response = requests.post("https://slack.com/api/chat.postMessage",
-            headers = self.headers,
-            json = {
-                "channel": self.channel_id,
-                "text": text,
-            }
-        )
-        self.thread_ts = response.json()["ts"]
-        return response
-
-
-    def _post(self, text, info = {}):
+    def _post(self, text, info = {}, url="https://slack.com/api/chat.postMessage"):
         time = str(datetime.now())
         info = "\n".join(f'{k}:\t{v}' for k, v in info.items())
 
-        return requests.post("https://slack.com/api/chat.postMessage",
-            headers = self.headers,
-            json = {
-                "channel": self.channel_id,
-                "text": f"{text}\ntime:\t{time}\n{info}",
-                "thread_ts": self.thread_ts,
-            }
-        )
+        try:
+            return requests.post(url,
+                headers = self.headers,
+                json = {
+                    "channel": self.channel_id,
+                    "text": f"{text}\ntime:\t{time}\n{info}",
+                    "thread_ts": self.thread_ts,
+                }
+            )
+        except requests.exceptions.RequestException as e:
+            print(f"post error!\n{e}", file=sys.stderr)
+            return None
+
+
+    def start_thread(self, text="start :tada:", params={}, **kwargs):
+        response = self._post(text = text, info = {**params, **kwargs})
+        self.thread_ts = response.json()["ts"]
+        return response
 
 
     def ping(self, text="ping!", params={}, **kwargs):
