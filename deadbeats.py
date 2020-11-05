@@ -1,6 +1,7 @@
 import requests
 from datetime import datetime
 import os, sys
+import subprocess
 
 
 class _InnerClass:
@@ -71,8 +72,17 @@ DEADBEATS = _InnerClass()
 
 
 def main():
-    print("DEADBEATS")
-    print("☠️ see https://youtu.be/6ydgEipkUEU")
+    # print("DEADBEATS")
+    # print("☠️ see https://youtu.be/6ydgEipkUEU")
+    start = datetime.now()
+    DEADBEATS.start_thread()
+    try:
+        subprocess.run(sys.argv[1:], shell=True)
+    except Exception as e:
+        DEADBEATS.ping(e)
+        raise e
+    end = datetime.now()
+    DEADBEATS.ping(text=f"end :sparkles:\nduration:\t{end - start}")
 
 
 if __name__ == "__main__":
