@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "deadbeats"
-version = "0.2.5"
+version = "0.3.1"
 description = ""
 authors = ["hppRC <hpp.ricecake@gmail.com>"]
 readme = "README.md"

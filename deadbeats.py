@@ -8,11 +8,6 @@ class _InnerClass:
     def __init__(self):
         self.access_token = os.getenv("SLACK_ACCESS_TOKEN")
         self.channel_id = os.getenv("SLACK_CHANNEL_ID")
-        self.headers = {
-            "content-type": "application/json",
-            'Authorization': f'Bearer {self.access_token}'
-        }
-
         self.thread_ts = ""
 
 
@@ -31,10 +26,14 @@ class _InnerClass:
     def _post(self, text, info = {}, url="https://slack.com/api/chat.postMessage"):
         time = str(datetime.now())
         info = "\n".join(f'{k}:\t{v}' for k, v in info.items())
+        headers = {
+            "content-type": "application/json",
+            'Authorization': f'Bearer {self.access_token}'
+        }
 
         try:
             return requests.post(url,
-                headers = self.headers,
+                headers = headers,
                 json = {
                     "channel": self.channel_id,
                     "text": f"{text}\ntime:\t{time}\n{info}",
