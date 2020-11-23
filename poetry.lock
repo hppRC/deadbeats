@@ -137,17 +137,6 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xm
 
 [[package]]
 category = "dev"
-description = "Manage dependencies of tests"
-name = "pytest-dependency"
-optional = false
-python-versions = "*"
-version = "0.5.1"
-
-[package.dependencies]
-pytest = ">=3.6.0"
-
-[[package]]
-category = "dev"
 description = "A py.test plugin that parses environment files before running tests"
 name = "pytest-dotenv"
 optional = false
@@ -170,7 +159,7 @@ version = "0.6"
 pytest = "*"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Add .env support to your django/flask apps in development and deployments"
 name = "python-dotenv"
 optional = false
@@ -252,7 +241,7 @@ test = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 
 [metadata]
-content-hash = "5518c2db38ba0eb3e6dbf95acf2016fcef9cd2a2bf2599e11d6efde12103cbae"
+content-hash = "217514f6cccf50a340d6858cc91666bf861ebaee222d13289e7e8a6314da9829"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -307,9 +296,6 @@ pyparsing = [
 pytest = [
     {file = "pytest-5.4.3-py3-none-any.whl", hash = "sha256:5c0db86b698e8f170ba4582a492248919255fcd4c79b1ee64ace34301fb589a1"},
     {file = "pytest-5.4.3.tar.gz", hash = "sha256:7979331bfcba207414f5e1263b5a0f8f521d0f457318836a7355531ed1a4c7d8"},
-]
-pytest-dependency = [
-    {file = "pytest-dependency-0.5.1.tar.gz", hash = "sha256:c2a892906192663f85030a6ab91304e508e546cddfe557d692d61ec57a1d946b"},
 ]
 pytest-dotenv = [
     {file = "pytest-dotenv-0.5.2.tar.gz", hash = "sha256:2dc6c3ac6d8764c71c6d2804e902d0ff810fa19692e95fe138aefc9b1aa73732"},

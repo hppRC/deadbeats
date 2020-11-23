@@ -2,6 +2,7 @@ import requests
 from datetime import datetime
 import os, sys
 import subprocess
+from dotenv import load_dotenv
 
 
 class _InnerClass:
@@ -21,6 +22,12 @@ class _InnerClass:
 
     def reset_thread(self):
         self.thread_ts = ""
+
+
+    def load_and_set_environment(self):
+        load_dotenv()
+        self.set_access_token(os.getenv("SLACK_ACCESS_TOKEN"))
+        self.set_channel_id(os.getenv("SLACK_CHANNEL_ID"))
 
 
     def _post(self, text, info = {}, url="https://slack.com/api/chat.postMessage"):
@@ -57,13 +64,15 @@ class _InnerClass:
 
     def wrap(self, function, start_message="start! :sparkles:", end_message="end! :confetti_ball:"):
         def inner(*args, **kargs):
+            start = datetime.now()
             self._post(start_message)
             try:
-                return function(*args, **kargs)
+                result = function(*args, **kargs)
             except Exception as e:
                 self._post(e)
                 raise e
-            self._post(end_messageend_message)
+            self._post(end_message, info={"duration": start - datetime.now()})
+            return result
         return inner
 
 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "deadbeats"
-version = "0.3.1"
+version = "0.3.2"
 description = ""
 authors = ["hppRC <hpp.ricecake@gmail.com>"]
 readme = "README.md"
@@ -15,6 +15,7 @@ deadbeats = "deadbeats:main"
 python = "^3.8"
 requests = "^2.24.0"
 datetime = "^4.3"
+python-dotenv = "^0.15.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
