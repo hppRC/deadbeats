@@ -71,7 +71,7 @@ class _InnerClass:
             except Exception as e:
                 self._post(e)
                 raise e
-            self._post(end_message, info={"duration": start - datetime.now()})
+            self._post(end_message, info={"duration": datetime.now() - start})
             return result
         return inner
 
