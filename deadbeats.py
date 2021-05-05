@@ -91,6 +91,7 @@ def main():
         raise e
     end = datetime.now()
     DEADBEATS.ping(text=f"end :sparkles:\nduration:\t{end - start}")
+    return 0
 
 
 if __name__ == "__main__":
