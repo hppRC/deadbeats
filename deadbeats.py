@@ -3,10 +3,14 @@ from datetime import datetime
 import os, sys
 import subprocess
 from dotenv import load_dotenv
+from pathlib import Path
 
 
 class _InnerClass:
     def __init__(self):
+        dotenv_path = Path.cwd() / ".env"
+        load_dotenv(dotenv_path)
+
         self.access_token = os.getenv("SLACK_ACCESS_TOKEN")
         self.channel_id = os.getenv("SLACK_CHANNEL_ID")
         self.thread_ts = ""
@@ -25,7 +29,8 @@ class _InnerClass:
 
 
     def load_and_set_environment(self):
-        load_dotenv()
+        dotenv_path = Path.cwd() / ".env"
+        load_dotenv(dotenv_path)
         self.set_access_token(os.getenv("SLACK_ACCESS_TOKEN"))
         self.set_channel_id(os.getenv("SLACK_CHANNEL_ID"))
 
