@@ -16,7 +16,7 @@ DEADBEATS.set_access_token("SLACK_ACCESS_TOKEN")
 DEADBEATS.set_channel_id("SLACK_CHANNEL_ID")
 
 
-# `DEADBEATS.wrap` sends a message at the beginning and end of the function.
+# `DEADBEATS.wrap` sends a message at the beginning and the end of the wrapped function.
 # `DEADBEATS.wrap` catch every errors and raise it after sending a error message.
 @DEADBEATS.wrap
 def main():
